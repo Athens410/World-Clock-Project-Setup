@@ -1,3 +1,5 @@
+
+
 function updateTime (){
 // los angeles
 let losAngelesElement = document.querySelector("#los-angeles");
