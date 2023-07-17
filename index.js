@@ -47,12 +47,24 @@ tokyoTimeElement.innerHTML = tokyoTime.format("h:mm:ss:SSS [<small>]A[</small>] 
  function updateCity(event){
 
 let cityTimeZone = event.target.value;
-if (cityTimeZone ==="current") {
-    cityTimeZone = moment.tz.guess();
-} 
 
-let cityName =cityTimeZone.replace("_", "").split("/")[1];
+
+  if (cityTimeZone === "current") {
+    cityTimeZone = moment.tz.guess();
+   
+  } 
+
+
+
+let cityName = cityTimeZone.replace("_", " ").split("/")[1];
 let cityTime = moment().tz(cityTimeZone);
+  
+//button
+
+let buttonHtml = "";
+  if (cityTimeZone !== "current") {
+    buttonHtml = `<button onclick="goToHomepage()">all cities</button>`;
+  }
 
 let citiesElement = document.querySelector("#cities");
 citiesElement.innerHTML = `
@@ -75,7 +87,17 @@ citiesElement.innerHTML = `
 
 `;
 
+
+
+
+
+
  }
+
+
+ function goToHomepage() {
+  window.location.href = "index.html";
+}
 
 let citiesSelectElement = document.querySelector("#city");
 citiesSelectElement.addEventListener("change", updateCity)
